@@ -1,4 +1,6 @@
-import { PrimaryColumn, Column, Entity } from "typeorm";
+import { PrimaryColumn, Column, Entity, OneToMany, JoinColumn } from "typeorm";
+import { Vote } from "./vote.entity";
+
 
 @Entity()
 export class Candidate {
@@ -11,5 +13,9 @@ export class Candidate {
 
   @Column()
   photo: string
+
+  @OneToMany(() => Vote, (vote) => vote.partyNumber, { cascade: true })
+  @JoinColumn({ name: 'partyNumber' })
+  votes: Vote[]
 
 }
