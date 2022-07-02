@@ -3,6 +3,7 @@ import BaseQueue from './base.queue'
 import { Vote } from '../entity/vote.entity';
 import Mysql from '../mysql';
 import RedisCli from '../redis'
+import { socketIo } from '../server';
 
 const redis = RedisCli.getInstance();
 
@@ -49,5 +50,7 @@ export default class VoteQueue extends BaseQueue {
     }
     votes[partyNumber] = votesQuantity;
     await redis.setJSON('votes', votes);
+
+
   }
 }
