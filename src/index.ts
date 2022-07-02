@@ -1,6 +1,8 @@
 import { loadEnvs } from './tools/envs.tools';
 loadEnvs(`${__dirname}/../envs/.env-${process.env.NODE_ENV}`);
+import './mysql';
 import './queues';
+
 
 process.on('uncaughtException', (error: Error) => {
   console.error(`uncaughtException ${error.message}`);
